@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Vending Machine</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #ageResult {
+      text-align: center;
+      font-size: 1.2em;
+      margin: 20px;
+      color: green;
+    }
+    .product-section {
+      display: none;
+      margin-top: 20px;
+    }
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 150px;
+      text-align: center;
+    }
+    .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Smart Vending Machine</h1>
+
+  <button class="btn" onclick="scanUser()">🔍 Scan User</button>
+  <div id="ageResult"></div>
+
+  <!-- Child Products -->
+  <div id="childSection" class="product-section">
+    <h2>Recommended for Children</h2>
+    <div class="products">
+      <div class="card">
+        <img src="https://i.imgur.com/Zv4Qb0K.png" alt="Choco">
+        <p>Chocolate Bar</p>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/MjN5DVP.png" alt="Gummies">
+        <p>Gummy Bears</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adult Products -->
+  <div id="adultSection" class="product-section">
+    <h2>Recommended for Adults</h2>
+    <div class="products">
+      <div class="card">
+        <img src="https://i.imgur.com/x2Q2bJz.png" alt="Pen">
+        <p>Pen Pack</p>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/CvO1Mu3.png" alt="Notebook">
+        <p>Notebook</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Senior Products -->
+  <div id="seniorSection" class="product-section">
+    <h2>Recommended for Senior Citizens</h2>
+    <div class="products">
+      <div class="card">
+        <img src="https://i.imgur.com/XY8cttd.png" alt="Medicine">
+        <p>Vitamin Tablets</p>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/LvQnAHH.png" alt="Pain relief">
+        <p>Pain Relief Cream</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function scanUser() {
+      // Simulate ML output by random age group
+      const ageGroups = ['child', 'adult', 'senior'];
+      const selected = ageGroups[Math.floor(Math.random() * ageGroups.length)];
+
+      document.getElementById("childSection").style.display = "none";
+      document.getElementById("adultSection").style.display = "none";
+      document.getElementById("seniorSection").style.display = "none";
+
+      document.getElementById("ageResult").innerText = "Predicted Age Group: " + selected.charAt(0).toUpperCase() + selected.slice(1);
+
+      if (selected === "child") {
+        document.getElementById("childSection").style.display = "block";
+      } else if (selected === "adult") {
+        document.getElementById("adultSection").style.display = "block";
+      } else if (selected === "senior") {
+        document.getElementById("seniorSection").style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
